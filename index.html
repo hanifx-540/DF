@@ -649,17 +649,20 @@ renderCards();
   </main>
 </div><script>
 // Login
-function handleLogin() {
+  function handleLogin() {
   const pass = document.getElementById('login-pass').value;
   const pin = document.getElementById('login-pin').value;
-  if (pass === '1234' && pin === '000000') {
+
+  const savedPass = localStorage.getItem("vault_pass") || "1234";
+  const savedPin = localStorage.getItem("vault_pin") || "000000";
+
+  if (pass === savedPass && pin === savedPin) {
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('vault-container').style.display = 'flex';
   } else {
-    alert('Invalid Credentials');
+    alert('Invalid Password or PIN');
   }
-}
-
+  }
 function showTab(id) {
   document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
